@@ -1,2 +1,2 @@
-axios: para hacer peticiones http a otros servicios
-npm install axios
+mongoose = para modelar la base mongodb
+npm install mongoose

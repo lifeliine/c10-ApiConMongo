@@ -1,9 +1,7 @@
-const WeatherRepository = require('../repositories/weatherRepository');
-const weatherRepository = new WeatherRepository();
-const CityRepository = require('../repositories/cityRepository');
+
 const logger= require('../loaders/logger');
-const cityRepository = new CityRepository();
- 
+
+/*
 const findWeather = async(lon,lat) => {
     const weather = await weatherRepository.acquireWeather(lon,lat);
     return {
@@ -26,3 +24,4 @@ module.exports = {
     findWeather,
     weatherById
 }
+*/
