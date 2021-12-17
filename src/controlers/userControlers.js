@@ -65,7 +65,7 @@ const createUser = async (req,res,next) => {
   const removeUser = async (req,res,next) => {
     try {
         const{id} = req.params;
-        deleteUser(id);
+        await deleteUser(id);
         const result = {
             message: `User with id: ${id} deleted.`
         }

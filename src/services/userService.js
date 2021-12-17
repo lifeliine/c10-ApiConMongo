@@ -2,6 +2,7 @@
 const logger= require('../loaders/logger');
 const UserRepository = require('../repositories/userRepository');
 const userRepository = new UserRepository();
+const bcrypt = require('bcrypt');
 
 const findAll = async() => {
     return await userRepository.getAll();
@@ -12,6 +13,7 @@ const findById = async(id) => {
 }
 
 const saveUser = async(user) => {
+    user.password = await bcrypt.hash(user.password, 10);
     return await userRepository.save(user);
 }
 
