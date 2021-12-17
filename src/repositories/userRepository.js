@@ -10,6 +10,11 @@ class UserRepository {
         return await userModel.find(); 
     }
 
+    async getAllPagination(filter,options){
+        return await userModel.paginate(filter,options)
+        
+    }
+
     async getById(id){
         return await userModel.findById(id);
     }

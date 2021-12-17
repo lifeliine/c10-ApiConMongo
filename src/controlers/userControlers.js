@@ -9,7 +9,7 @@ const {findAll, findById, saveUser, updateUser, deleteUser} = require('../servic
  */
 const getUsers = async (req,res,next) => {
     try {
-        const users = await findAll();
+        const users = await findAll(req.query.filter,req.query.options);
         res.json(users);
     } catch (error) {
         next(error);

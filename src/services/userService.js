@@ -3,9 +3,10 @@ const logger= require('../loaders/logger');
 const UserRepository = require('../repositories/userRepository');
 const userRepository = new UserRepository();
 const bcrypt = require('bcrypt');
+const { options } = require('../routes/usersRoutes');
 
-const findAll = async() => {
-    return await userRepository.getAll();
+const findAll = async(filter,options) => {
+    return await userRepository.getAllPagination(filter,options);
 }
 
 const findById = async(id) => {

@@ -1,2 +1,26 @@
 mongoose = para modelar la base mongodb
 npm install mongoose
+
+bcrypt = para encriptar las password, lo agregue en la capa de service antes de guardar en la db
+npm install bcrypt
+
+uniqueValidator= complemento de moongose para avisar con un error si se intenta ingresar un dato repetido como un mail
+agregado en la capa models
+npm install --save mongoose-unique-validator
+
+
+paginate-v2= complemento de moongose para limitar el retorno de datos al hacer una peticion de gran tamaño como todos los usuarios por ej
+agregado en la capa models
+npm install mongoose-paginate-v2
+objeto.paginate(query, options) en este caso objeto = userModel
+query = filtros puedo poner name, lastname encriptar
+options = {
+  select: 'title date author',
+  sort: { date: -1 },
+  populate: 'author',
+  lean: true,
+  offset: 20,
+  limit: 10,
+};
+ej de consulta = basepath/users?filter[lastName]=Franchella&options[limit]=10&options[offset]=0
+.paginate({lastName},{limit,offset})
