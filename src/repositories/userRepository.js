@@ -19,6 +19,10 @@ class UserRepository {
         return await userModel.findById(id);
     }
 
+    async getByEmail(email){
+        return await userModel.findOne({email: email});
+    }
+
     async save(user) {
         return await userModel.create(user);
     }
