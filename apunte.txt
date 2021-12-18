@@ -33,3 +33,5 @@ ej de consulta = basepath/users?filter[lastName]=Franchella&options[limit]=10&op
 validator = complemento de express para validar al momento de recibir peticiones
 npm install express-validator
 podemos usarlo en el archivo de rutas
+
+prueba comenzando publicacion 21 51
