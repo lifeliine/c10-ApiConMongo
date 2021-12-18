@@ -37,3 +37,5 @@ podemos usarlo en el archivo de rutas
 prueba comenzando publicacion 21 51
 
 por concluir la publicacion 21 54
+
+git flow feature start MYFEATURE
