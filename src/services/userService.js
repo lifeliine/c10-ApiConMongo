@@ -3,7 +3,6 @@ const logger= require('../loaders/logger');
 const UserRepository = require('../repositories/userRepository');
 const userRepository = new UserRepository();
 const bcrypt = require('bcrypt');
-const { options } = require('../routes/usersRoutes');
 
 const findAll = async(filter,options) => {
     return await userRepository.getAllPagination(filter,options);
@@ -26,11 +25,15 @@ const deleteUser = async(id) => {
     return await userRepository.delete(id);
 }
 
+const findByEmail = async(email) => {
+  return await userRepository.getByEmail(email)
+}
+
 module.exports = {
     findAll,
     findById,
     saveUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    findByEmail
 }
-

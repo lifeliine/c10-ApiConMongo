@@ -1,13 +1,18 @@
 mongoose = para modelar la base mongodb
 npm install mongoose
 
+//////////////////////////////////////////////////////////////////////////
+
 bcrypt = para encriptar las password, lo agregue en la capa de service antes de guardar en la db
 npm install bcrypt
+
+//////////////////////////////////////////////////////////////////////
 
 uniqueValidator= complemento de moongose para avisar con un error si se intenta ingresar un dato repetido como un mail
 agregado en la capa models
 npm install --save mongoose-unique-validator
 
+//////////////////////////////////////////////////////////////////////
 
 paginate-v2= complemento de moongose para limitar el retorno de datos al hacer una peticion de gran tamaño como todos los usuarios por ej
 agregado en la capa models
@@ -24,3 +29,7 @@ options = {
 };
 ej de consulta = basepath/users?filter[lastName]=Franchella&options[limit]=10&options[offset]=0
 .paginate({lastName},{limit,offset})
+///////////////////////////////////////////////////////////////////
+validator = complemento de express para validar al momento de recibir peticiones
+npm install express-validator
+podemos usarlo en el archivo de rutas
