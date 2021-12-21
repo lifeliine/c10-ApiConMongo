@@ -14,6 +14,11 @@ const accesLogin = async(email,password) => {
             throw new AppError('Authentification failed!, email/password', 400)
         }
         
+        //en el schema de la db creamos el atributo boolean enable para saber si esta vigente el user o baneado
+        if(!user.enable){
+            throw new AppError('Authentification failed!, User disabled', 400)
+        }
+        
         //Validacion pass
         const validatePassword = await bcrypt.compare(password,user.password);
         if(!validatePassword){

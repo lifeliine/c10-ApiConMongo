@@ -37,3 +37,5 @@ podemos usarlo en el archivo de rutas
 ///////////////////////////////////////////////////////////////////////////
 jsonwebtoken = se crea al momento de el inicio de sesion por parte del userModel
 npm install jsonwebtoken
+
+probando git  git flow release finish 'ValidacionJWTrelease'
