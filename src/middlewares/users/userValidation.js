@@ -1,6 +1,7 @@
 const {check,validationResult} = require('express-validator');
 const AppError = require('../../errors/appErrors');
 const {findByEmail,findById} = require('../../services/userService')
+const {validJWT} = require('../auth/authValidation');
 
 //creamos validaciones 
 const _nameRequired = check('name', 'Name required').not().isEmpty();
@@ -63,6 +64,7 @@ const _validationResult = (req,res,next) => {
 
 
 const postRequestValidations = [
+    validJWT, //primero validamos que el token sea correcto
     _nameRequired,
     _LastnameRequired,
     _emailRequired,
