@@ -34,10 +34,6 @@ validator = complemento de express para validar al momento de recibir peticiones
 npm install express-validator
 podemos usarlo en el archivo de rutas
 
-prueba comenzando publicacion 21 51
-
-por concluir la publicacion 21 54
-
-git flow feature start MYFEATURE
-
-git flow release start RELEASE
+///////////////////////////////////////////////////////////////////////////
+jsonwebtoken = se crea al momento de el inicio de sesion por parte del userModel
+npm install jsonwebtoken

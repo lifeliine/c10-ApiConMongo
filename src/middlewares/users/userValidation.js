@@ -1,6 +1,7 @@
 const {check,validationResult} = require('express-validator');
 const AppError = require('../../errors/appErrors');
-const userService = require('../../services/userService')
+const {findByEmail,findById} = require('../../services/userService')
+const {validJWT} = require('../auth/authValidation');
 
 //creamos validaciones 
 const _nameRequired = check('name', 'Name required').not().isEmpty();
@@ -13,7 +14,7 @@ const _dateValid = check('birthdate').optional().isDate('MM-DD-YYYY');
 //Validacion personalizada 
 const _emailExist = check('email').custom(
     async(email = '') => {
-        const userEmailFound =await userService.findByEmail(email);
+        const userEmailFound = await findByEmail(email);
         if(userEmailFound) {
             throw new AppError('Email already exist in DB', 400);
         }
@@ -31,7 +32,7 @@ const _roleValid = check('role').optional().custom(
 
 const idExist = check('id').custom(
     async(id = '') => {
-        const userFound = await userService.findById(id);
+        const userFound = await findById(id);
         if(!userFound) {
             throw new AppError('ID does not exist in DB', 400);
         }
@@ -45,7 +46,7 @@ const _OptionalEmailValid = check('email', 'Email invalid').optional().isEmail()
 
 const _OptionalEmailExist = check('email').optional().custom(
     async(email = '') => {
-        const userEmailFound =await userService.findByEmail(email);
+        const userEmailFound =await findByEmail(email);
         if(userEmailFound) {
             throw new AppError('Email already exist in DB', 400);
         }
@@ -63,6 +64,7 @@ const _validationResult = (req,res,next) => {
 
 
 const postRequestValidations = [
+    validJWT, //primero validamos que el token sea correcto
     _nameRequired,
     _LastnameRequired,
     _emailRequired,
