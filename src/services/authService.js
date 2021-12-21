@@ -70,7 +70,14 @@ const validToken = async(token) => {
     }
 }
 
+const validRole = (user,...roles) => {
+    if(!roles.includes(user.role)) {
+        throw new AppError('Authorization failed, user without privileges',403);
+    }
+}
+
 module.exports = {
     accesLogin,
-    validToken
+    validToken,
+    validRole
 }

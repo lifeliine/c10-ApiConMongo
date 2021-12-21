@@ -1,6 +1,6 @@
 const {check,validationResult} = require('express-validator');
 const AppError = require('../../errors/appErrors');
-const{validToken} = require('../../services/authService');
+const{validToken,validRole} = require('../../services/authService');
 //OBS CREAR UN NUEVO ARCHIVO VALIDATION DONDE SE ALMACENEN LAS VALIDACIONES EN COMUN ENTRE AUTH Y USER
 
 
@@ -34,7 +34,21 @@ const validJWT = async (req,res,next) => {
     }
 }
 
+//... aviso que puede recibir varios parametros
+const hasRole = (...roles) => {
+    return (req,res,next) => {
+        try {
+            validRole(req.user, ...roles); //podemos usar el req.user porque lo asignamos en la funcion anterior validJWT
+            next();
+        } catch (error) {
+            next(error);
+        }
+    }
+    
+}
+
 module.exports = {
     postAuthRequestValidations,
-    validJWT
+    validJWT,
+    hasRole
 }

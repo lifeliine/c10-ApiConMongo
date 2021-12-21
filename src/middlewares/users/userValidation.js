@@ -1,7 +1,8 @@
 const {check,validationResult} = require('express-validator');
 const AppError = require('../../errors/appErrors');
 const {findByEmail,findById} = require('../../services/userService')
-const {validJWT} = require('../auth/authValidation');
+const {validJWT,hasRole} = require('../auth/authValidation');
+
 
 //creamos validaciones 
 const _nameRequired = check('name', 'Name required').not().isEmpty();
@@ -65,6 +66,7 @@ const _validationResult = (req,res,next) => {
 
 const postRequestValidations = [
     validJWT, //primero validamos que el token sea correcto
+    hasRole('ADMIN_ROLE'),
     _nameRequired,
     _LastnameRequired,
     _emailRequired,
@@ -77,6 +79,8 @@ const postRequestValidations = [
 ]
 
 const putRequestValidations = [
+    validJWT, 
+    hasRole('ADMIN_ROLE'),
     _OptionalEmailValid,
     _OptionalEmailExist,
     _roleValid,
@@ -87,19 +91,27 @@ const putRequestValidations = [
 ]
 
 const getRequestValidations = [
+    validJWT,
     idExist,
     _validationResult
 ]
 
 const deleteRequestValidations = [
+    validJWT, 
+    hasRole('ADMIN_ROLE'),
     _idIsMongo,
     idExist,
     _validationResult
+]
+
+const getAllRequestValidations = [
+    validJWT
 ]
 
 module.exports = {
     postRequestValidations,
     putRequestValidations,
     getRequestValidations,
+    getAllRequestValidations,
     deleteRequestValidations
 }
