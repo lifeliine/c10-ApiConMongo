@@ -37,3 +37,10 @@ podemos usarlo en el archivo de rutas
 ///////////////////////////////////////////////////////////////////////////
 jsonwebtoken = se crea al momento de el inicio de sesion por parte del userModel
 npm install jsonwebtoken
+
+probando git  git flow release finish 'ValidacionJWTrelease'
+
+/////////////////////////////////////////////////////////////////////////////
+una vez implementado el token para login , solo se podra acceder a las rutas de la api
+si se posee un token, se logra mediante el uso de headers para recuperar el token
+y un middleware para realizar la validacion del token

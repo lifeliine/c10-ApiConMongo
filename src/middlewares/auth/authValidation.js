@@ -1,6 +1,6 @@
 const {check,validationResult} = require('express-validator');
 const AppError = require('../../errors/appErrors');
-
+const{validToken,validRole} = require('../../services/authService');
 //OBS CREAR UN NUEVO ARCHIVO VALIDATION DONDE SE ALMACENEN LAS VALIDACIONES EN COMUN ENTRE AUTH Y USER
 
 
@@ -23,6 +23,32 @@ postAuthRequestValidations = [
     _validationResult
 ]
 
+const validJWT = async (req,res,next) => {
+    try {
+        const token = req.header('Authorization');
+        const user = await validToken(token);
+        req.user = user;  //con esto cualquier req que venga por el middelware usara el user logeado
+        next();
+    } catch (error) {
+        next(error);
+    }
+}
+
+//... aviso que puede recibir varios parametros
+const hasRole = (...roles) => {
+    return (req,res,next) => {
+        try {
+            validRole(req.user, ...roles); //podemos usar el req.user porque lo asignamos en la funcion anterior validJWT
+            next();
+        } catch (error) {
+            next(error);
+        }
+    }
+    
+}
+
 module.exports = {
-    postAuthRequestValidations
+    postAuthRequestValidations,
+    validJWT,
+    hasRole
 }
